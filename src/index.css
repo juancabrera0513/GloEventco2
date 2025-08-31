@@ -1,0 +1,190 @@
+/* ================================
+   Glo Event Co — Tailwind v4 CSS
+   ================================ */
+
+/* Fuentes (display + body) */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@300;400;600&display=swap');
+
+/* Núcleo Tailwind v4 */
+@import "tailwindcss";
+
+/* Plugins (v4) */
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+
+/* ----------------
+   Tema (tokens v4)
+   ---------------- */
+@theme {
+  /* Tipografías */
+  --font-display: "Orbitron", ui-sans-serif, system-ui;
+  --font-body: "Poppins", ui-sans-serif, system-ui;
+
+  /* Colores base */
+  --color-base-bg: #0a0a0f;
+  --color-base-surface: #0f1117;
+
+  /* Paleta neon */
+  --color-neon-cyan:   #00e5ff;
+  --color-neon-mint:   #00f5d4;
+  --color-neon-pink:   #ff00e6;
+  --color-neon-purple: #8a2be2;
+  --color-neon-yellow: #faff00;
+
+  /* Sombras / halos */
+  --shadow-glow:                0 0 24px rgba(0,229,255,.45);  /* cyan base */
+  --shadow-glow-strong:         0 0 56px rgba(0,229,255,.75);  /* cyan fuerte */
+  --shadow-glow-pink:           0 0 48px rgba(255,0,230,.50);  /* pink base */
+  --shadow-glow-pink-strong:    0 0 68px rgba(255,0,230,.80);  /* pink fuerte */
+}
+
+/* ------------
+   Global base
+   ------------ */
+:root { color-scheme: dark; }
+html, body, #root { height: 100%; }
+body {
+  background: var(--color-base-bg);
+  color: #e5e7eb;              /* approx text-gray-200 */
+  font-family: var(--font-body);
+}
+
+/* Imágenes responsivas por defecto */
+img, svg, video, canvas { display: block; max-width: 100%; }
+
+/* ----------------------
+   Utilidades estilo Glo
+   ---------------------- */
+
+/* Tarjeta tipo “glass” */
+.glass {
+  background: linear-gradient(
+    to bottom right,
+    rgba(255,255,255,0.06),
+    rgba(255,255,255,0.02)
+  );
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Borde/aro neon suaves */
+.neon-border {
+  box-shadow:
+    inset 0 0 1px rgba(0,229,255,0.6),
+    0 0 12px rgba(0,229,255,0.25);
+}
+.neon-ring {
+  box-shadow:
+    0 0 0 2px rgba(0,229,255,0.5),
+    0 0 24px rgba(0,229,255,0.35);
+}
+
+/* Texto neon */
+.neon-text-cyan {
+  color: #e6fdff;
+  text-shadow:
+    0 0 6px  #00e5ff,
+    0 0 18px rgba(0,229,255,.6),
+    0 0 36px rgba(0,229,255,.4);
+}
+.neon-text-pink {
+  color: #ffe6fb;
+  text-shadow:
+    0 0 6px  #ff00e6,
+    0 0 18px rgba(255,0,230,.6),
+    0 0 36px rgba(255,0,230,.4);
+}
+
+/* -------------------
+   “Glow System” v4
+   ------------------- */
+
+/* Hover glow genérico (cyan por defecto) */
+.glo-hover {
+  transition: box-shadow .25s ease, transform .25s ease, filter .25s ease;
+}
+.glo-hover:hover {
+  box-shadow: var(--shadow-glow-strong);
+  transform: translateY(-1px);
+}
+
+/* Hover glow pink */
+.glo-hover-pink {
+  transition: box-shadow .25s ease, transform .25s ease, filter .25s ease;
+}
+.glo-hover-pink:hover {
+  box-shadow: var(--shadow-glow-pink-strong);
+  transform: translateY(-1px);
+}
+
+/* Glows persistentes (siempre encendidos) */
+.glo-on      { box-shadow: var(--shadow-glow); }
+.glo-on-pink { box-shadow: var(--shadow-glow-pink); }
+
+/* Drop glows (halo vía filter) */
+.glo-drop      { filter: drop-shadow(0 0 18px rgba(0,229,255,.65)); }
+.glo-drop-pink { filter: drop-shadow(0 0 18px rgba(255,0,230,.65)); }
+
+/* Scope automático: todo lo “clicable” brilla al hover sin repetir clases */
+.glo-scope a,
+.glo-scope button,
+.glo-scope [role="button"],
+.glo-scope .card,
+.glo-scope .tile {
+  transition: box-shadow .25s ease, transform .25s ease;
+}
+.glo-scope a:hover,
+.glo-scope button:hover,
+.glo-scope [role="button"]:hover,
+.glo-scope .card:hover,
+.glo-scope .tile:hover {
+  box-shadow: var(--shadow-glow-strong);
+  transform: translateY(-1px);
+}
+
+/* --------------------
+   Letrero estilo neón
+   -------------------- */
+.neon-sign {
+  font-family: var(--font-display);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  display: inline-block;
+}
+.neon-sign.cyan {
+  color: #e6fdff;
+  text-shadow:
+    0 0 2px  #00e5ff,
+    0 0 12px #00e5ff,
+    0 0 28px rgba(0,229,255,.7);
+}
+.neon-sign.pink {
+  color: #ffe6fb;
+  text-shadow:
+    0 0 2px  #ff00e6,
+    0 0 12px #ff00e6,
+    0 0 28px rgba(255,0,230,.7);
+}
+
+/* Flicker accesible (sutil) */
+@keyframes neon-flicker {
+  0%, 18%, 20%, 63%, 65%, 100% { opacity: 1; }
+  19%, 19.5%, 64%              { opacity: .82; }
+}
+.flicker-slow { animation: neon-flicker 3.2s linear infinite; }
+.flicker-fast { animation: neon-flicker 1.6s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .flicker-slow, .flicker-fast { animation: none !important; }
+}
+
+/* --------------------------
+   Accesibilidad de motion
+   -------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+  }
+}
