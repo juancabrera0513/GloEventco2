@@ -9,20 +9,21 @@ const logoSrc = '/images/logo.png'
 export default function Header() {
   const [open, setOpen] = useState(false)
 
+  const linkBase = 'px-2 py-1 rounded underline-offset-4'
   const nav = (
     <nav className="flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-6">
       <NavLink
         to="/"
         className={({ isActive }) =>
-          `glo-hover px-2 py-1 rounded hover:underline underline-offset-4 ${isActive ? 'text-white' : 'text-gray-300'}`
+          `${linkBase} glo-hover-soft hover:underline ${isActive ? 'text-white' : 'text-gray-300'}`
         }
       >
         Home
       </NavLink>
-      <NavLink to="/services"  className="text-gray-300 hover:underline underline-offset-4 glo-hover px-2 py-1 rounded">Services</NavLink>
-      <NavLink to="/portfolio" className="text-gray-300 hover:underline underline-offset-4 glo-hover px-2 py-1 rounded">Portfolio</NavLink>
-      <NavLink to="/faq"       className="text-gray-300 hover:underline underline-offset-4 glo-hover px-2 py-1 rounded">FAQ</NavLink>
-      <NavLink to="/contact"   className="text-gray-300 hover:underline underline-offset-4 glo-hover px-2 py-1 rounded">Contact</NavLink>
+      <NavLink to="/services"  className={`${linkBase} text-gray-300 glo-hover-soft hover:underline`}>Services</NavLink>
+      <NavLink to="/portfolio" className={`${linkBase} text-gray-300 glo-hover-soft hover:underline`}>Portfolio</NavLink>
+      <NavLink to="/faq"       className={`${linkBase} text-gray-300 glo-hover-soft hover:underline`}>FAQ</NavLink>
+      <NavLink to="/contact"   className={`${linkBase} text-gray-300 glo-hover-soft hover:underline`}>Contact</NavLink>
       <div className="flex gap-2 pt-2 lg:pt-0">
         <GlowButton href={BOOK_SELFIE} external appearance="glass">Selfie Station</GlowButton>
         <GlowButton href={BOOK_SILENT} external variant="pink">Silent Disco</GlowButton>
@@ -64,7 +65,7 @@ export default function Header() {
       {open && (
         <div className="lg:hidden border-t border-white/5 px-4 pb-4">
           {nav}
-          <a href={`tel:${PHONE}`} className="mt-3 inline-block text-sm text-gray-300 glo-hover px-2 py-1 rounded">
+          <a href={`tel:${PHONE}`} className="mt-3 inline-block text-sm text-gray-300 glo-hover-soft px-2 py-1 rounded">
             Call {PHONE}
           </a>
         </div>

@@ -159,8 +159,8 @@ export default function Home() {
 
 
         {/* TESTIMONIALS */}
-        <TestimonialsCarousel items={TESTIMONIALS} />
-
+        <TestimonialsCarousel
+  items={TESTIMONIALS} />
 
         {/* FINAL CTA (higher contrast on gradient) */}
         <section className="py-16">

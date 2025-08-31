@@ -32,10 +32,10 @@
   --color-neon-yellow: #faff00;
 
   /* Sombras / halos */
-  --shadow-glow:                0 0 24px rgba(0,229,255,.45);  /* cyan base */
-  --shadow-glow-strong:         0 0 56px rgba(0,229,255,.75);  /* cyan fuerte */
-  --shadow-glow-pink:           0 0 48px rgba(255,0,230,.50);  /* pink base */
-  --shadow-glow-pink-strong:    0 0 68px rgba(255,0,230,.80);  /* pink fuerte */
+  --shadow-glow:             0 0 24px rgba(0,229,255,.45);  /* cyan base */
+  --shadow-glow-strong:      0 0 56px rgba(0,229,255,.75);  /* cyan fuerte */
+  --shadow-glow-pink:        0 0 48px rgba(255,0,230,.50);  /* pink base */
+  --shadow-glow-pink-strong: 0 0 68px rgba(255,0,230,.80);  /* pink fuerte */
 }
 
 /* ------------
@@ -125,15 +125,34 @@ img, svg, video, canvas { display: block; max-width: 100%; }
 .glo-drop      { filter: drop-shadow(0 0 18px rgba(0,229,255,.65)); }
 .glo-drop-pink { filter: drop-shadow(0 0 18px rgba(255,0,230,.65)); }
 
-/* Scope automático: todo lo “clicable” brilla al hover sin repetir clases */
-.glo-scope a,
+/* -----------------------------
+   Hover “suave” para enlaces
+   (evita el “cuadrado” de box-shadow)
+   ----------------------------- */
+.glo-hover-soft {
+  transition: filter .25s ease, text-shadow .25s ease, transform .25s ease;
+}
+.glo-hover-soft:hover {
+  filter: drop-shadow(0 0 12px rgba(0,229,255,.65));
+  text-shadow: 0 0 6px #00e5ff, 0 0 12px rgba(0,229,255,.6);
+  transform: translateY(-1px);
+}
+.glo-hover-soft-pink:hover {
+  filter: drop-shadow(0 0 12px rgba(255,0,230,.70));
+  text-shadow: 0 0 6px #ff00e6, 0 0 12px rgba(255,0,230,.6);
+  transform: translateY(-1px);
+}
+
+/* ---------------------------------------
+   Scope: solo superficies usan box-shadow
+   (enlaces usan glo-hover-soft manualmente)
+   --------------------------------------- */
 .glo-scope button,
 .glo-scope [role="button"],
 .glo-scope .card,
 .glo-scope .tile {
   transition: box-shadow .25s ease, transform .25s ease;
 }
-.glo-scope a:hover,
 .glo-scope button:hover,
 .glo-scope [role="button"]:hover,
 .glo-scope .card:hover,

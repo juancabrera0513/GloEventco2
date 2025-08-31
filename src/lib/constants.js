@@ -5,18 +5,16 @@ export const EMAIL = 'info@gloeventco.com'
 export const ADDRESS_HTML = '11155 South Towne Sq. Suite C<br/>St. Louis, MO 63123'
 
 export const BOOK_BASE = 'https://glo-event-co.checkcherry.com'
-export const BOOK_SELFIE = `${BOOK_BASE}/packages/selfie-station-rentals`
-export const BOOK_SILENT = `${BOOK_BASE}/packages/silent-disco`
+export const BOOK_SELFIE = `${BOOK_BASE}/reservation/event_type?package_group_id=13666`
+export const BOOK_SILENT = `${BOOK_BASE}/reservation/package_group?service_id=9587`
 
-// === Our Work (assets bundlados) ===
-// Carga todas las imágenes de /src/assets/cases como URLs con hash
+// === Our Work (bundled assets con fallback a /public) ===
 const caseMap = import.meta.glob('../assets/cases/*.{png,jpg,jpeg,webp,avif}', {
   eager: true,
   as: 'url',
 })
-const getCase = (name) => caseMap[`../assets/cases/${name}`]
+const getCase = (name) => caseMap[`../assets/cases/${name}`] ?? `/images/cases/${name}`
 
-// Si tus archivos son .png/.jpg/.webp, ajusta los nombres abajo:
 export const OUR_WORK = [
   {
     src: getCase('case-1.png'),
@@ -62,27 +60,29 @@ export const OUR_WORK = [
   },
 ]
 
-// src/lib/constants.js
-// ...tus exports existentes (LOGO_TEXT, PHONE, EMAIL, BOOK_* , OUR_WORK, etc.)
-
+// === Testimonials ===
+// Si luego agregas imágenes grandes para el carrusel 2-col, añade `image: '/images/testimonials/xyz-hero.jpg'`
 export const TESTIMONIALS = [
   {
     name: 'Chris & Deanna L.',
     role: 'Founders of IKAGG',
     event: 'Corporate Christmas Party',
-    quote: '“We LOVE IT! Easy to use, fun, and we’d definitely hire again.”',
-    avatar: '/images/testimonials/ikagg.jpeg', // opcional (ponlo en /public/images/testimonials/)
+    quote:
+      'We LOVE IT! Everyone is having a great time. It is easy to use. It’s fun. Not only do you get pictures but you can also do boomerangs, videos, and GIFs. We would definitely hire you back.',
+    avatar: '/images/testimonials/ikagg.jpeg',
   },
   {
     name: 'Wendy F.',
     role: 'Event Coordinator',
-    quote: '“Preparation and professionalism shine through every event.”',
+    quote:
+      "Working with Misty and Glo Event Co is always a great experience. Her preparation and professionalism really shine through her events. You can tell she really cares about her clients' experience. I always look forward to working with her and her team—whether it's a Silent Disco Party, the photo booth, or both. We have a great time, and I never worry about referring her services to my clients.",
     avatar: '/images/testimonials/wendy.png',
   },
   {
     name: 'Joy L.',
     role: 'Community Manager',
-    quote: '“Residents had a blast—fun props and unique photos!”',
+    quote:
+      'Misty brought the photo booth to an event at one of my senior apartments. The residents had a blast! They really enjoyed using the props to get fun and unique photos. The whole setup was easy to use and made for a great activity. Thank you!',
     avatar: '/images/testimonials/joy.jpg',
   },
 ]
