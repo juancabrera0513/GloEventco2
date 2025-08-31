@@ -76,7 +76,7 @@ export const TESTIMONIALS = [
     role: 'Event Coordinator',
     quote:
       "Working with Misty and Glo Event Co is always a great experience. Her preparation and professionalism really shine through her events. You can tell she really cares about her clients' experience. I always look forward to working with her and her team—whether it's a Silent Disco Party, the photo booth, or both. We have a great time, and I never worry about referring her services to my clients.",
-    avatar: '/images/testimonials/wendy.png',
+    avatar: '/images/testimonials/wendy.jpeg',
   },
   {
     name: 'Joy L.',

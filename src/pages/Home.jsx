@@ -111,7 +111,7 @@ export default function Home() {
 
             <div className="relative rounded-2xl glass glo-hover">
               <img
-                src="/images/silent-disco.jpg"
+                src="/images/silent-disco.webp"
                 alt="Silent Disco — LED headsets"
                 className="w-full h-[380px] object-cover"
                 loading="lazy"

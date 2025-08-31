@@ -1,7 +1,7 @@
 // src/pages/FAQ.jsx
 import NeonHeading from '../components/NeonHeading'
 import GlowButton from '../components/GlowButton'
-import { BOOK_SELFIE, BOOK_SILENT } from '../lib/constants'
+import { BOOK_SELFIE, BOOK_SILENT, PHONE, EMAIL } from '../lib/constants'
 
 const faqs = [
   {
@@ -79,14 +79,8 @@ Staffing levels depend on event size.`,
   },
 ]
 
-// IDs accesibles/anclables (#q-what-is-silent-disco)
 const slug = (s) =>
-  s
-    .toLowerCase()
-    .replace(/&/g, 'and')
-    .replace(/[^a-z0-9\s-]/g, '')
-    .trim()
-    .replace(/\s+/g, '-')
+  s.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9\s-]/g, '').trim().replace(/\s+/g, '-')
 
 export default function FAQ() {
   const pageTitle = 'FAQ | Glo Event Co'
@@ -112,21 +106,10 @@ export default function FAQ() {
         </div>
       )
     }
-    if (type === 'reserve') {
+    if (type === 'reserve' || type === 'duration') {
       return (
         <div className="mt-4 flex flex-wrap gap-3">
-          <GlowButton href={BOOK_SELFIE} external appearance="glass">
-            Book Selfie Station
-          </GlowButton>
-          <GlowButton href={BOOK_SILENT} external variant="pink">
-            Book Silent Disco
-          </GlowButton>
-        </div>
-      )
-    }
-    if (type === 'duration') {
-      return (
-        <div className="mt-4 flex flex-wrap gap-3">
+          <GlowButton href="/contact">Ask a question</GlowButton>
           <GlowButton href={BOOK_SELFIE} external appearance="glass">
             Book Selfie Station
           </GlowButton>
@@ -177,6 +160,38 @@ export default function FAQ() {
           )
         })}
       </dl>
+
+      <section className="mt-12" aria-labelledby="contact-cta-heading">
+        <div className="rounded-2xl px-6 py-8 text-black bg-gradient-to-br from-[var(--color-neon-cyan)] to-[var(--color-neon-mint)] shadow-[var(--shadow-glow)] glo-hover">
+          <h3 id="contact-cta-heading" className="font-display text-xl md:text-2xl">
+            Didn’t find your answer?
+          </h3>
+          <p className="mt-1">
+            We’d love to help. Reach out and we’ll get back quickly with the details you need.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <GlowButton href="/contact" appearance="glass">
+              Contact us
+            </GlowButton>
+            <GlowButton href={BOOK_SILENT} external variant="pink">
+              Book Silent Disco
+            </GlowButton>
+            <GlowButton href={BOOK_SELFIE} external>
+              Book Selfie Station
+            </GlowButton>
+          </div>
+          <p className="mt-4 text-sm">
+            Or call{' '}
+            <a href={`tel:${PHONE}`} className="underline underline-offset-4 glo-hover-soft px-1 rounded">
+              {PHONE}
+            </a>{' '}
+            or email{' '}
+            <a href={`mailto:${EMAIL}`} className="underline underline-offset-4 glo-hover-soft px-1 rounded">
+              {EMAIL}
+            </a>.
+          </p>
+        </div>
+      </section>
 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLD) }} />
     </div>
